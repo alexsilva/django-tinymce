@@ -107,7 +107,8 @@ class TinyMCE(forms.Textarea):
             js = [tinymce.settings.JS_URL]
         if tinymce.settings.USE_FILEBROWSER:
             js.append(reverse('tinymce-filebrowser'))
-        js.append('django_tinymce/jquery-1.9.1.min.js')
+        if tinymce.settings.USE_JQUERY:
+            js.append('django_tinymce/jquery-1.9.1.min.js')
         js.append('django_tinymce/init_tinymce.js')
         return forms.Media(js=js)
     media = property(_media)
